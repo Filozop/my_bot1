@@ -27,3 +27,17 @@ bot.infinity_polling()"""
         return('Ви не можете вживати алкогольні напої')
 age = int(input('Скільки вам років?'))
 print(func(age))"""
+
+
+
+
+"""import requests
+# from bs4 import BeautifulSoup
+# URL = 'https://www.google.com/'
+#
+# response = requests.get(URL)
+#
+# soup = BeautifulSoup(response.text,'lxml')
+# data = soup.find('li',class_='b_algo')
+# # a = [c.text for c in data]
+# link = data.find('a',class_="target").get('href')"""
