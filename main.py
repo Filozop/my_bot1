@@ -24,28 +24,29 @@ for number in range(1,2698):
             file.write('\n' + name + ',' + year + ',' + quality + ',' + link)
 
 
-        def search_film(name):
-            with open('films.txt', 'r', encoding='utf-8') as file:
-                for i in file.readlines():
-                    if name in i:
-                        return i.split(',')
 
 
-# @bot.message_handler(commands=['start'])
-# def welcome_user(message):
-#     bot.reply_to(message,
-#                  f"{message.from_user.first_name},привіт!,\nВведи назву фільму ,який хочете подивитися:")
-#     bot.register_next_step_handler(message,search_film)
-#
-# @bot.message_handler(func=lambda message: True)
-# def search_film(message):
-#     if message.text == name(URL):
-#         bot.reply_to(message,f"{message.from_user.first_name},Фільм знайдено,\n приємного перегляду)
-#     else:
-#         bot.register_next_step_handler(message,error)
-#
-# def error(message):
-#     bot.reply_to(message,f"{message.from_user.first_name} Переконайтеся, що ввели правильну назву фільму")
-#     bot.register_next_step_handler(message, search_film)
-#
-# bot.infinity_polling()
+
+
+@bot.message_handler(commands=['start'])
+def welcome_user(message):
+    bot.reply_to(message,
+                 f"{message.from_user.id.first_name},привіт!,\nВведи назву фільму ,який хочеш подивитися:")
+    bot.register_next_step_handler(message,search_film)
+
+@bot.message_handler(func=lambda message: True)
+def search_film(message):
+    if message.text == name('films.txt'):
+        with open('films.txt','r',encoding='utf-8') as file:
+            for i in file.readlines():
+                if name in i:
+                    return i.split(',')
+        bot.reply_to(name,"Фільм знайдено,\n приємного перегляду")
+    else:
+        bot.register_next_step_handler(name,error_film)
+
+def error_film(message):
+    bot.reply_to(message,f"{message.from_user.first_name} Переконайтеся, що ввели правильну назву фільму")
+    bot.register_next_step_handler(message, search_film)
+
+bot.infinity_polling()
